@@ -1,0 +1,272 @@
+
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>Calendar</title>
+      <meta name="description" content="Calendar">
+      <meta name="author" content="Charles Anderson">
+      <link rel="stylesheet" href="style.css">
+    
+    </head>
+    <style>
+      
+      .cc{
+          height: 625px;
+      }
+      .week-y-h {
+          width: 850px;
+      }
+      
+      .d {
+          width: 100px;
+          position: relative;
+      }
+      .top {
+          border-bottom: 1px solid gray;
+      }
+      .tech {
+         margin:0;
+          width: 100px;
+          padding: 10px 5px
+      }
+      .technician {
+          padding-right: 30px;
+      }
+
+    
+  </style>
+    
+    <body>
+      <div class="content">
+        <div class="calendar-container">
+          <div class="calendar"> 
+            <div class="year-header"> 
+              <span class="left-button" id="prev"> &lang; </span> 
+              <span class="year" id="label"></span> 
+              <span class="right-button" id="next"> &rang; </span>
+            </div> 
+            <table class="months-table"> 
+              <tbody>
+                <tr class="months-row">
+                  <td class="month">Jan</td> 
+                  <td class="month">Feb</td> 
+                  <td class="month">Mar</td> 
+                  <td class="month">Apr</td> 
+                  <td class="month">May</td> 
+                  <td class="month">Jun</td> 
+                  <td class="month">Jul</td>
+                  <td class="month">Aug</td> 
+                  <td class="month">Sep</td> 
+                  <td class="month">Oct</td>          
+                  <td class="month">Nov</td>
+                  <td class="month">Dec</td>
+                </tr>
+              </tbody>
+            </table> 
+            
+            <table class="days-table"> 
+              <td class="day">Sun</td> 
+              <td class="day">Mon</td> 
+              <td class="day">Tue</td> 
+              <td class="day">Wed</td> 
+              <td class="day">Thu</td> 
+              <td class="day">Fri</td> 
+              <td class="day">Sat</td>
+            </table> 
+            <div class="frame"> 
+              <table class="dates-table"> 
+                  <tbody class="tbody">             
+                  </tbody> 
+              </table>
+            </div> 
+            <button class="button" id="add-button">Add Event</button>
+          </div>
+        </div>
+        <div class="events-container">
+        </div>
+        <div class="dialog" id="dialog">
+            <h2 class="dialog-header"> Add New Event </h2>
+            <form class="form" id="form">
+              <div class="form-container" align="center">
+                <label class="form-label" id="valueFromMyButton" for="name">Assistant6:</label><br><br>
+                <!-- <input class="input" type="text" id="name" maxlength="36"> -->
+                <select id="name">
+                    <option value=""></option>
+                    <option value="roland">Roland</option>
+                    <option value="javi">Javi</option>
+                    <option value="gustavo">Gustavo</option>
+                    <option value="chuck">Chuck</option>
+                    <option value="greg">Greg</option>
+                    <option value="louie">Louie</option>
+                    <option value="jarvis">Jarvis</option>
+            
+                    <option value="cameron">Cameron</option>
+                    <option value="antonio">Antonio</option>
+                </select><br><br>
+
+                <label class="form-label" id="valueFromMyButton" for="count">Assigned to Tech:</label><br><br>
+                <!-- <input class="input" type="text" id="count" min="0" max="1000000" maxlength="99"> -->
+                <select id="count">
+                    
+
+                    <option value=""></option>
+                    <option value="Victor">Victor</option>
+                    <option value="Tommy">Tommy</option>
+                    <option value="Galviz">Galviz</option>
+                    <option value="Mendoza">Mendoza</option>
+                    <option value="Chris">Chris</option>
+                    <option value="Zeb">Zeb</option>
+                    <option value="Don">Don</option>
+                    <option value="Alex">Alex</option>
+                    <option value="Rogelio">Rogelio</option>
+                    <option value="Beto">Beto</option>
+                </select><br> <br>
+
+                <input type="button" value="Cancel" class="button" id="cancel-button">
+                <input type="button" value="OK" class="button" id="ok-button">
+              </div>
+            </form>
+          </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+      <div class="content weeeks">
+        <div class="calendar-container cc">
+          <div class="year-header week-y-h style='width: 800px;'"> 
+            
+              <span class="weeklyWeek" id="label">12/13/2020 - 12/19/2020</span> 
+              
+            </div> 
+
+            <table class=" top days-table"> 
+                <td class="day d tech">Helpers</td> 
+                <td class="day d weekDay" id="sunday" style="padding-right:5px;">Sunday</td> 
+                <td class="day d weekDay" id="monday" style="padding-right:5px;">Monday</td> 
+                <td class="day d weekDay" id="tuesday" style="padding-right:5px;">Tuesday</td> 
+                <td class="day d weekDay" id="wednesday" style="padding-right:5px;">Wednesday</td> 
+                <td class="day d weekDay" id="thursday" style="padding-right:5px;">Thursday</td> 
+                <td class="day d weekDay" id="friday" style="padding-right:5px;">Friday</td> 
+                <td class="day d weekDay" id="saturday" style="padding-right:5px;">Saturday</td>
+              </table> 
+              <!-- rolands Row  -->
+              <table class="side days-table" id='side'> 
+                  <td class="tech d  day" id="roland">Roland</td> 
+                  <td class="roland d sunday day" style="padding-right: 0px;">available</td> 
+                  <td class="roland d monday day" style="padding-right: 0px;">available</td> 
+                  <td class="roland d tuesday day" style="padding-right: 0px;">available</td> 
+                  <td class="roland d wednesday day" style="padding-right: 0px;">available</td> 
+                  <td class="roland d thursday day" style="padding-right: 0px;">available</td> 
+                  <td class="roland d friday day" style="padding-right: 0px;">available</td> 
+                  <td class="roland d saturday day" style="padding-right: 0px;">available</td>
+                </table>
+                <!-- javis row -->
+                <table class="days-table"> 
+                  <td class="tech d  day" id="javi">Javi</td> 
+                  <td class="javi d sunday day" style="padding-right: 0px;">available</td> 
+                  <td class="javi d monday day" style="padding-right: 0px;">available</td> 
+                  <td class="javi d tuesday day" style="padding-right: 0px;">available</td> 
+                  <td class="javi d wednesday day" style="padding-right: 0px;">available</td> 
+                  <td class="javi d thursday day" style="padding-right: 0px;">available</td> 
+                  <td class="javi d friday day" style="padding-right: 0px;">available</td> 
+                  <td class="javi d saturday day" style="padding-right: 0px;">available</td>
+                </table>
+                <!-- gustavo -->
+                <table class="days-table"> 
+                  <td class="tech d  day" id="gustavo">Gustavo</td> 
+                  <td class="gustavo d sunday day" style="padding-right: 0px;">available</td> 
+                  <td class="gustavo d monday day" style="padding-right: 0px;">available</td> 
+                  <td class="gustavo d tuesday day" style="padding-right: 0px;">available</td> 
+                  <td class="gustavo d wednesday day" style="padding-right: 0px;">available</td> 
+                  <td class="gustavo d thursday day" style="padding-right: 0px;">available</td> 
+                  <td class="gustavo d friday day" style="padding-right: 0px;">available</td> 
+                  <td class="gustavo d saturday day" style="padding-right: 0px;">available</td>
+                </table>
+                <!-- chuck -->
+                <table class="days-table"> 
+                  <td class="tech d  day" id="chuck">Chuck</td> 
+                  <td class="chuck d sunday day" style="padding-right: 0px;">available</td> 
+                  <td class="chuck d monday day" style="padding-right: 0px;">available</td> 
+                  <td class="chuck d tuesday day" style="padding-right: 0px;">available</td> 
+                  <td class="chuck d wednesday day" style="padding-right: 0px;">available</td> 
+                  <td class="chuck d thursday day" style="padding-right: 0px;">available</td> 
+                  <td class="chuck d friday day" style="padding-right: 0px;">available</td> 
+                  <td class="chuck d saturday day" style="padding-right: 0px;">available</td>
+                </table>
+                <!-- louie -->
+                <table class="days-table"> 
+                  <td class="tech d  day" id="louie">Louie</td> 
+                  <td class="louie d sunday day" style="padding-right: 0px;">available</td> 
+                  <td class="louie d monday day" style="padding-right: 0px;">available</td> 
+                  <td class="louie d tuesday day" style="padding-right: 0px;">available</td> 
+                  <td class="louie d wednesday day" style="padding-right: 0px;">available</td> 
+                  <td class="louie d thursday day" style="padding-right: 0px;">available</td> 
+                  <td class="louie d friday day" style="padding-right: 0px;">available</td> 
+                  <td class="louie d saturday day" style="padding-right: 0px;">available</td>
+                </table>
+                <!-- jarvis -->
+                <table class="days-table"> 
+                  <td class="tech d  day" id="jarvis">Jarvis</td> 
+                  <td class="jarvis d sunday day" style="padding-right: 0px;">available</td> 
+                  <td class="jarvis d monday day" style="padding-right: 0px;">available</td> 
+                  <td class="jarvis d tuesday day" style="padding-right: 0px;">available</td> 
+                  <td class="jarvis d wednesday day" style="padding-right: 0px;">available</td> 
+                  <td class="jarvis d thursday day" style="padding-right: 0px;">available</td> 
+                  <td class="jarvis d friday day" style="padding-right: 0px;">available</td> 
+                  <td class="jarvis d saturday day" style="padding-right: 0px;">available</td>
+                </table>
+                <!-- greg -->
+                <table class="days-table"> 
+                  <td class="tech d  day" id="greg">Greg</td> 
+                  <td class="greg d sunday day" style="padding-right: 0px;">available</td> 
+                  <td class="greg d monday day" style="padding-right: 0px;">available</td> 
+                  <td class="greg d tuesday day" style="padding-right: 0px;">available</td> 
+                  <td class="greg d wednesday day" style="padding-right: 0px;">available</td> 
+                  <td class="greg d thursday day" style="padding-right: 0px;">available</td> 
+                  <td class="greg d friday day" style="padding-right: 0px;">available</td> 
+                  <td class="greg d saturday day" style="padding-right: 0px;">available</td>
+                </table>
+                <!-- cameron -->
+                <table class="days-table"> 
+                  <td class="tech d  day" id="cameron">Cameron</td> 
+                  <td class="cameron d sunday day" style="padding-right: 0px;">available</td> 
+                  <td class="cameron d monday day" style="padding-right: 0px;">available</td> 
+                  <td class="cameron d tuesday day" style="padding-right: 0px;">available</td> 
+                  <td class="cameron d wednesday day" style="padding-right: 0px;">available</td> 
+                  <td class="cameron d thursday day" style="padding-right: 0px;">available</td> 
+                  <td class="cameron d friday day" style="padding-right: 0px;">available</td> 
+                  <td class="cameron d saturday day" style="padding-right: 0px;">available</td>
+                </table>
+               
+
+                <table class="days-table"> 
+                  <td class="tech d  day" id="antonio">Antonio</td> 
+                  <td class="antonio d day sunday" style="padding-right: 0px;">available</td>
+                  <td class="antonio d day monday" style="padding-right: 0px;">available</td> 
+                  <td class="antonio d day tuesday" style="padding-right: 0px;">available</td> 
+                  <td class="antonio d day wednesday" style="padding-right: 0px;">available</td> 
+                  <td class="antonio d day thursday" style="padding-right: 0px;">available</td> 
+                  <td class="antonio d day friday" style="padding-right: 0px;">available</td> 
+                  <td class="antonio d day saturday" style="padding-right: 0px;">available</td> 
+                  
+                </table>
+          </div>
+    </div>
+
+  
+      <!-- Dialog Box-->
+      <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+      </script>
+      <script src="app.js"></script>
+    </body>
+    </html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="/path/to/css/mark-your-calendar.css" /> -->
+
+</head>
+<body>
+    <div id="picker"></div>
+    
+    <script src="/path/to/cdn/jquery.slim.min.js"></script>
+    <script src="/path/to/js/mark-your-calendar.js"></script>
+<script>
+    $('#picker').markyourcalendar({
+        availability: myavailability,
+        months: ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'],
+        weekdays: ['sun','mon','tue','wed','thurs','fri','sat']
+    });
+
+    $('#picker').markyourcalendar({
+        availability: myavailability,
+        startDate: new Date(),
+
+    })
+
+    $('#picker').markyourcalendar({
+        availability: myavailability,
+        prevHtml: prevHtml,
+        nextHtml: nextHtml,
+    });
+
+    $('#picker').markyourcalendar({
+        availability: myavailability,
+  onClick:function(ev, data) {
+    // data is a list of datetimes
+    console.log(data);
+    var html = ``;
+    $.each(data,function() {
+      var d =this.split(' ')[0];
+      var t =this.split(' ')[1];
+      html += `<p>` + d + ` ` + t + `</p>`;
+    });
+    $('#output').html(html);
+  },
+
+
+    })
+</script>
+</body>
+</html>
