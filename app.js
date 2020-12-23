@@ -1,4 +1,4 @@
-(function funk(){
+
 // Setup the calendar with the current date
 $(document).ready(function(){
     var date = new Date();
@@ -81,7 +81,7 @@ let daysToschedule = Array.from(document.querySelectorAll('.d'));
       var saturday = moment().day(sunRef);
       
       if (monRef > 0) {
-        for (var date = monRef; date <= sunRef; date++) {
+        for (var date = monRef ; date <= sunRef; date++) {
           dateViews[(date - 1) % 7].innerHTML = moment().day(date).format('M[/]D');
 
           roland[(date - 1) % 7].
@@ -169,7 +169,7 @@ let daysToschedule = Array.from(document.querySelectorAll('.d'));
       if (sundays.format('YYYY') !== saturday.format('YYYY')) {
         dateRange.innerHTML = `${sundays.format('MMMM Do, YYYY')} - ${saturday.format('MMMM Do, YYYY')}`;
       } else {
-        dateRange.innerHTML = `${sundays.format('MMMM Do')} - ${saturday.format('MMMM Do, YYYY')}`;
+        dateRange.innerHTML = `${sundays.format('MMMM Do, YYYY')} - ${saturday.format('MMMM Do, YYYY')}`;
       }
     
 
@@ -181,8 +181,12 @@ let daysToschedule = Array.from(document.querySelectorAll('.d'));
     var next = document.getElementById('next-arrow');
     
     next.onclick = function() {
-      sundayRef += 7;
-      saturdayRef += 7;
+        sundayRef += 7;
+        saturdayRef += 7;
+        let resetter = Array.from(document.querySelectorAll('td.help'));
+        resetter.forEach(el => el.innerHTML = 'Available')
+
+
       adjustCalendar(sundayRef, saturdayRef);
       daysToEventsCompare(daysToschedule, event_data.events)
     
@@ -191,6 +195,8 @@ let daysToschedule = Array.from(document.querySelectorAll('.d'));
     prev.onclick = function() {
       sundayRef -= 7;
       saturdayRef -= 7;
+      let resetter = Array.from(document.querySelectorAll('td.help'));
+      resetter.forEach(el => el.innerHTML = 'Available')
       adjustCalendar(sundayRef, saturdayRef);
       daysToEventsCompare(daysToschedule, event_data.events)
       
@@ -412,10 +418,8 @@ function check_events(day, month, year) {
     return events;
 }
 
-    // Recreate schedule table to display availability for listed week of
-    function checkWeeks() {
 
-    }
+
 
   
 
@@ -493,4 +497,3 @@ const months = [
     "December" 
 ];
 
-})()

@@ -15,7 +15,15 @@
       }
       .week-y-h {
           width: 850px;
+          
       }
+      #header {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1rem;
+    margin-top: 16px;
+}
+        
       
       .d {
           width: 100px;
@@ -147,16 +155,40 @@
               <i id="next-arrow" class="fas fa-arrow-right arrow" tabindex="0"></i>
             </div> 
 
-            <table class=" top days-table"> 
-                <td class=" tech">Helpers</td> 
-                <td class="day date d weekDay"  style="padding-right:5px;">Sunday</td> 
-                <td class="day date d weekDay"  style="padding-right:5px;">Monday</td> 
-                <td class="day date d weekDay"  style="padding-right:5px;">Tuesday</td> 
-                <td class="day date d weekDay"  style="padding-right:5px;">Wednesday</td> 
-                <td class="day date d weekDay"  style="padding-right:5px;">Thursday</td> 
-                <td class="day date d weekDay"  style="padding-right:5px;">Friday</td> 
-                <td class="day date d weekDay"  style="padding-right:5px;">Saturday</td>
-              </table> 
+            <div id="header" class="header">
+              <div>
+                <div>Assistant</div>
+                <div class="assistant day"></div>
+              </div>
+              <div>
+                <div>Sunday</div>
+                <div class="date day"></div>
+              </div>
+              <div>
+                <div>Monday</div>
+                <div class="date day"></div>
+              </div>
+              <div>
+                <div>Tuesday</div>
+                <div class="date day"></div>
+              </div>
+              <div>
+                <div>Wednesday</div>
+                <div class="date day"></div>
+              </div>
+              <div>
+                <div>Thursday</div>
+                <div class="date day"></div>
+              </div>
+              <div>
+                <div>Friday</div>
+                <div class="date day"></div>
+              </div>
+              <div>
+                <div>Saturday</div>
+                <div class="date day"></div>
+              </div>
+            </div> 
               <!-- rolands Row  -->
               <table class="side days-table" id='side'> 
                   <td class="tech   day" id="roland">Roland</td> 
