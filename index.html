@@ -6,7 +6,7 @@
       <meta name="description" content="Calendar">
       <meta name="author" content="Charles Anderson">
       <link rel="stylesheet" href="style.css">
-    
+      <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     </head>
     <style>
       
@@ -32,6 +32,7 @@
       .technician {
           padding-right: 30px;
       }
+
 
     
   </style>
@@ -88,16 +89,16 @@
             <h2 class="dialog-header"> Add New Event </h2>
             <form class="form" id="form">
               <div class="form-container" align="center">
-                <label class="form-label" id="valueFromMyButton" for="name">Assistant6:</label><br><br>
+                <label class="form-label" id="valueFromMyButton" for="name">Assistant:</label><br><br>
                 <!-- <input class="input" type="text" id="name" maxlength="36"> -->
                 <select id="name">
                     <option value=""></option>
                     <option value="roland">Roland</option>
                     <option value="javi">Javi</option>
                     <option value="gustavo">Gustavo</option>
+                    <option value="gabriel">Gabriel</option>
                     <option value="chuck">Chuck</option>
                     <option value="greg">Greg</option>
-                    <option value="louie">Louie</option>
                     <option value="jarvis">Jarvis</option>
             
                     <option value="cameron">Cameron</option>
@@ -141,46 +142,56 @@
       <div class="content weeeks">
         <div class="calendar-container cc">
           <div class="year-header week-y-h style='width: 800px;'"> 
-            
-              <span class="weeklyWeek" id="label">12/13/2020 - 12/19/2020</span> 
-              
+            <i id="prev-arrow" class="fas fa-arrow-left arrow" tabindex="0"></i>
+              <span class="" id="date-range"></span> 
+              <i id="next-arrow" class="fas fa-arrow-right arrow" tabindex="0"></i>
             </div> 
 
             <table class=" top days-table"> 
-                <td class="day d tech">Helpers</td> 
-                <td class="day d weekDay" id="sunday" style="padding-right:5px;">Sunday</td> 
-                <td class="day d weekDay" id="monday" style="padding-right:5px;">Monday</td> 
-                <td class="day d weekDay" id="tuesday" style="padding-right:5px;">Tuesday</td> 
-                <td class="day d weekDay" id="wednesday" style="padding-right:5px;">Wednesday</td> 
-                <td class="day d weekDay" id="thursday" style="padding-right:5px;">Thursday</td> 
-                <td class="day d weekDay" id="friday" style="padding-right:5px;">Friday</td> 
-                <td class="day d weekDay" id="saturday" style="padding-right:5px;">Saturday</td>
+                <td class=" tech">Helpers</td> 
+                <td class="day date d weekDay"  style="padding-right:5px;">Sunday</td> 
+                <td class="day date d weekDay"  style="padding-right:5px;">Monday</td> 
+                <td class="day date d weekDay"  style="padding-right:5px;">Tuesday</td> 
+                <td class="day date d weekDay"  style="padding-right:5px;">Wednesday</td> 
+                <td class="day date d weekDay"  style="padding-right:5px;">Thursday</td> 
+                <td class="day date d weekDay"  style="padding-right:5px;">Friday</td> 
+                <td class="day date d weekDay"  style="padding-right:5px;">Saturday</td>
               </table> 
               <!-- rolands Row  -->
               <table class="side days-table" id='side'> 
-                  <td class="tech d  day" id="roland">Roland</td> 
-                  <td class="roland d sunday day" style="padding-right: 0px;">available</td> 
-                  <td class="roland d monday day" style="padding-right: 0px;">available</td> 
-                  <td class="roland d tuesday day" style="padding-right: 0px;">available</td> 
-                  <td class="roland d wednesday day" style="padding-right: 0px;">available</td> 
-                  <td class="roland d thursday day" style="padding-right: 0px;">available</td> 
-                  <td class="roland d friday day" style="padding-right: 0px;">available</td> 
-                  <td class="roland d saturday day" style="padding-right: 0px;">available</td>
+                  <td class="tech   day" id="roland">Roland</td> 
+                  <td class="roland help ifNo d sunday day" style="padding-right: 0px;">available</td> 
+                  <td class="roland help ifNo d monday day" style="padding-right: 0px;">available</td> 
+                  <td class="roland help d ifNo tuesday day" style="padding-right: 0px;">available</td> 
+                  <td class="roland help d ifNo wednesday day" style="padding-right: 0px;">available</td> 
+                  <td class="roland help d ifNo thursday day" style="padding-right: 0px;">available</td> 
+                  <td class="roland help d ifNo friday day" style="padding-right: 0px;">available</td> 
+                  <td class="roland help d ifNo saturday day" style="padding-right: 0px;">available</td>
                 </table>
                 <!-- javis row -->
                 <table class="days-table"> 
-                  <td class="tech d  day" id="javi">Javi</td> 
-                  <td class="javi d sunday day" style="padding-right: 0px;">available</td> 
-                  <td class="javi d monday day" style="padding-right: 0px;">available</td> 
-                  <td class="javi d tuesday day" style="padding-right: 0px;">available</td> 
-                  <td class="javi d wednesday day" style="padding-right: 0px;">available</td> 
-                  <td class="javi d thursday day" style="padding-right: 0px;">available</td> 
-                  <td class="javi d friday day" style="padding-right: 0px;">available</td> 
-                  <td class="javi d saturday day" style="padding-right: 0px;">available</td>
+                  <td class="tech   day" id="javi">Javi</td> 
+                  <td class="javi help d sunday day" style="padding-right: 0px;">available</td> 
+                  <td class="javi help d monday day" style="padding-right: 0px;">available</td> 
+                  <td class="javi help d tuesday day" style="padding-right: 0px;">available</td> 
+                  <td class="javi help d wednesday day" style="padding-right: 0px;">available</td> 
+                  <td class="javi help d thursday day" style="padding-right: 0px;">available</td> 
+                  <td class="javi help d friday day" style="padding-right: 0px;">available</td> 
+                  <td class="javi help d saturday day" style="padding-right: 0px;">available</td>
+                </table>
+                <table class="days-table"> 
+                  <td class="tech  day" id="gabriel">Gabriel</td> 
+                  <td class="gabriel d sunday day" style="padding-right: 0px;">available</td> 
+                  <td class="gabriel d monday day" style="padding-right: 0px;">available</td> 
+                  <td class="gabriel d tuesday day" style="padding-right: 0px;">available</td> 
+                  <td class="gabriel d wednesday day" style="padding-right: 0px;">available</td> 
+                  <td class="gabriel d thursday day" style="padding-right: 0px;">available</td> 
+                  <td class="gabriel d friday day" style="padding-right: 0px;">available</td> 
+                  <td class="gabriel d saturday day" style="padding-right: 0px;">available</td>
                 </table>
                 <!-- gustavo -->
                 <table class="days-table"> 
-                  <td class="tech d  day" id="gustavo">Gustavo</td> 
+                  <td class="tech  day" id="gustavo">Gustavo</td> 
                   <td class="gustavo d sunday day" style="padding-right: 0px;">available</td> 
                   <td class="gustavo d monday day" style="padding-right: 0px;">available</td> 
                   <td class="gustavo d tuesday day" style="padding-right: 0px;">available</td> 
@@ -191,7 +202,7 @@
                 </table>
                 <!-- chuck -->
                 <table class="days-table"> 
-                  <td class="tech d  day" id="chuck">Chuck</td> 
+                  <td class="tech  day" id="chuck">Chuck</td> 
                   <td class="chuck d sunday day" style="padding-right: 0px;">available</td> 
                   <td class="chuck d monday day" style="padding-right: 0px;">available</td> 
                   <td class="chuck d tuesday day" style="padding-right: 0px;">available</td> 
@@ -200,20 +211,10 @@
                   <td class="chuck d friday day" style="padding-right: 0px;">available</td> 
                   <td class="chuck d saturday day" style="padding-right: 0px;">available</td>
                 </table>
-                <!-- louie -->
-                <table class="days-table"> 
-                  <td class="tech d  day" id="louie">Louie</td> 
-                  <td class="louie d sunday day" style="padding-right: 0px;">available</td> 
-                  <td class="louie d monday day" style="padding-right: 0px;">available</td> 
-                  <td class="louie d tuesday day" style="padding-right: 0px;">available</td> 
-                  <td class="louie d wednesday day" style="padding-right: 0px;">available</td> 
-                  <td class="louie d thursday day" style="padding-right: 0px;">available</td> 
-                  <td class="louie d friday day" style="padding-right: 0px;">available</td> 
-                  <td class="louie d saturday day" style="padding-right: 0px;">available</td>
-                </table>
+                
                 <!-- jarvis -->
                 <table class="days-table"> 
-                  <td class="tech d  day" id="jarvis">Jarvis</td> 
+                  <td class="tech  day" id="jarvis">Jarvis</td> 
                   <td class="jarvis d sunday day" style="padding-right: 0px;">available</td> 
                   <td class="jarvis d monday day" style="padding-right: 0px;">available</td> 
                   <td class="jarvis d tuesday day" style="padding-right: 0px;">available</td> 
@@ -224,7 +225,7 @@
                 </table>
                 <!-- greg -->
                 <table class="days-table"> 
-                  <td class="tech d  day" id="greg">Greg</td> 
+                  <td class="tech  day" id="greg">Greg</td> 
                   <td class="greg d sunday day" style="padding-right: 0px;">available</td> 
                   <td class="greg d monday day" style="padding-right: 0px;">available</td> 
                   <td class="greg d tuesday day" style="padding-right: 0px;">available</td> 
@@ -235,7 +236,7 @@
                 </table>
                 <!-- cameron -->
                 <table class="days-table"> 
-                  <td class="tech d  day" id="cameron">Cameron</td> 
+                  <td class="tech  day" id="cameron">Cameron</td> 
                   <td class="cameron d sunday day" style="padding-right: 0px;">available</td> 
                   <td class="cameron d monday day" style="padding-right: 0px;">available</td> 
                   <td class="cameron d tuesday day" style="padding-right: 0px;">available</td> 
@@ -244,10 +245,10 @@
                   <td class="cameron d friday day" style="padding-right: 0px;">available</td> 
                   <td class="cameron d saturday day" style="padding-right: 0px;">available</td>
                 </table>
-               
+                
 
                 <table class="days-table"> 
-                  <td class="tech d  day" id="antonio">Antonio</td> 
+                  <td class="tech  day" id="antonio">Antonio</td> 
                   <td class="antonio d day sunday" style="padding-right: 0px;">available</td>
                   <td class="antonio d day monday" style="padding-right: 0px;">available</td> 
                   <td class="antonio d day tuesday" style="padding-right: 0px;">available</td> 
@@ -257,6 +258,7 @@
                   <td class="antonio d day saturday" style="padding-right: 0px;">available</td> 
                   
                 </table>
+               
           </div>
     </div>
 
@@ -266,7 +268,10 @@
         src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous">
-      </script>
+        </script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
+
+
       <script src="app.js"></script>
     </body>
     </html>

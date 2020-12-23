@@ -1,3 +1,4 @@
+(function funk(){
 // Setup the calendar with the current date
 $(document).ready(function(){
     var date = new Date();
@@ -12,10 +13,192 @@ $(document).ready(function(){
     init_calendar(date);
     var events = check_events(today, date.getMonth()+1, date.getFullYear());
     show_events(events, months[date.getMonth()], today);
-    daysToEventsCompare(daysToschedule, event_data.events)
-    let gus = document.querySelector('.gustavo.thursday')
-    gus.innerText = 'victor'
+    
 });
+
+
+let daysToschedule = Array.from(document.querySelectorAll('.d'));
+
+
+    
+    var sundayRef = 0;
+    var saturdayRef = 6;
+    
+
+    var dateRange = document.getElementById('date-range');
+    var dateViews = document.getElementsByClassName('date');
+    var daysOfMonth = document.getElementById('days-of-month');
+    var calendarPopover = document.getElementById('calendar-popover');
+    var roland = document.getElementsByClassName('roland');
+    var javi = document.getElementsByClassName('javi');
+    var gabriel = document.getElementsByClassName('gabriel');
+    var gustavo = document.getElementsByClassName('gustavo');
+    var chuck = document.getElementsByClassName('chuck');
+    var greg = document.getElementsByClassName('greg');
+    var jarvis = document.getElementsByClassName('jarvis');
+    var cameron = document.getElementsByClassName('cameron');
+    var antonio = document.getElementsByClassName('antonio');
+
+
+   
+    // daysToEventsCompare(daysToschedule, event_data.events)
+
+
+    function daysToEventsCompare(arr1, arr2){
+        // console.log(arr2);
+        let scheduledArr = [];
+
+        let theHelpers = Array.from(document.querySelectorAll('td.help'));
+       arr1.forEach(el => {
+                arr2.forEach(element => {
+                    let newEl = element.occasion.toLowerCase()  
+                    if(el.className.includes(newEl) && el.id.includes(`${element.month}/${element.day}`)){
+                    scheduledArr.push(element)
+                        el.innerHTML = `<span style= "color: black; font-weight: bold;">${element.invited_count}</span>`;
+                        console.log(scheduledArr);
+                                        scheduledArr.forEach(sch => {
+                                            for(let i =0; i < theHelpers.length; i++){
+                                                if(!theHelpers[i].className.split(' ').includes(sch.occasion)){
+                                                console.log(theHelpers[i]);
+                                                    if(theHelpers[i].id !== `${scheduledArr.month}/${scheduledArr.day}`){                                                
+                                            }
+                                                }}
+                                                for(let i =0; i < theHelpers.length; i++){
+                                                console.log('object');
+                                                if(theHelpers[i].className.split(' ').includes(sch.occasion)) {
+                                                   console.log('match');
+                                                   }
+                                                }                              
+                                        })                       
+                }
+                    })
+                });
+          
+    }
+ 
+    function adjustCalendar(monRef, sunRef) {
+      var sundays = moment().day(monRef);
+      var saturday = moment().day(sunRef);
+      
+      if (monRef > 0) {
+        for (var date = monRef; date <= sunRef; date++) {
+          dateViews[(date - 1) % 7].innerHTML = moment().day(date).format('M[/]D');
+
+          roland[(date - 1) % 7].
+        setAttribute('id',(moment().day(date).format('M[/]D')));
+          roland.id = (moment().day(date).format('M[/]D'));
+
+          gabriel[(date - 1) % 7].
+        setAttribute('id',(moment().day(date).format('M[/]D')));
+          gabriel.id = (moment().day(date).format('M[/]D'));
+
+          gustavo[(date - 1) % 7].
+        setAttribute('id',(moment().day(date).format('M[/]D')));
+          gustavo.id = (moment().day(date).format('M[/]D'));
+
+          chuck[(date - 1) % 7].
+        setAttribute('id',(moment().day(date).format('M[/]D')));
+          chuck.id = (moment().day(date).format('M[/]D'));
+
+          greg[(date - 1) % 7].
+        setAttribute('id',(moment().day(date).format('M[/]D')));
+          greg.id = (moment().day(date).format('M[/]D'));
+
+          jarvis[(date - 1) % 7].
+        setAttribute('id',(moment().day(date).format('M[/]D')));
+          jarvis.id = (moment().day(date).format('M[/]D'));
+
+          cameron[(date - 1) % 7].
+        setAttribute('id',(moment().day(date).format('M[/]D')));
+          cameron.id = (moment().day(date).format('M[/]D'));
+
+          antonio[(date - 1) % 7].
+        setAttribute('id',(moment().day(date).format('M[/]D')));
+          antonio.id = (moment().day(date).format('M[/]D'));         
+
+          javi[(date - 1) % 7].
+        setAttribute('id',(moment().day(date).format('M[/]D')));
+          javi.id = (moment().day(date).format('M[/]D'));
+          
+        }
+      } else {
+        for (var date = -monRef; date >= -sunRef; date --) {
+            dateViews[-(monRef + date)].innerHTML = moment().day(-date).format('M[/]D');
+
+
+          roland[-(monRef + date)].
+          setAttribute('id',(moment().day(-date).format('M[/]D')));
+          roland.id = (moment().day(-date).format('M[/]D'));
+          
+          javi[-(monRef + date)].
+          setAttribute('id',(moment().day(-date).format('M[/]D')));
+          javi.id = (moment().day(-date).format('M[/]D'));
+          
+          gabriel[-(monRef + date)].
+          setAttribute('id',(moment().day(-date).format('M[/]D')));
+          gabriel.id = (moment().day(-date).format('M[/]D'));
+
+          gustavo[-(monRef + date)].
+          setAttribute('id',(moment().day(-date).format('M[/]D')));
+          gustavo.id = (moment().day(-date).format('M[/]D'));
+
+          chuck[-(monRef + date)].
+          setAttribute('id',(moment().day(-date).format('M[/]D')));
+          chuck.id = (moment().day(-date).format('M[/]D'));
+
+          greg[-(monRef + date)].
+          setAttribute('id',(moment().day(-date).format('M[/]D')));
+          greg.id = (moment().day(-date).format('M[/]D'));
+
+          jarvis[-(monRef + date)].
+          setAttribute('id',(moment().day(-date).format('M[/]D')));
+          jarvis.id = (moment().day(-date).format('M[/]D'));
+
+          cameron[-(monRef + date)].
+          setAttribute('id',(moment().day(-date).format('M[/]D')));
+          cameron.id = (moment().day(-date).format('M[/]D'));
+
+          antonio[-(monRef + date)].
+          setAttribute('id',(moment().day(-date).format('M[/]D')));
+          antonio.id = (moment().day(-date).format('M[/]D'));
+        //   console.log(roland[-(monRef + date)]);
+        }
+      }
+     
+      
+      if (sundays.format('YYYY') !== saturday.format('YYYY')) {
+        dateRange.innerHTML = `${sundays.format('MMMM Do, YYYY')} - ${saturday.format('MMMM Do, YYYY')}`;
+      } else {
+        dateRange.innerHTML = `${sundays.format('MMMM Do')} - ${saturday.format('MMMM Do, YYYY')}`;
+      }
+    
+
+    }
+    // Init
+    adjustCalendar(sundayRef, saturdayRef);
+    
+    var prev = document.getElementById('prev-arrow');
+    var next = document.getElementById('next-arrow');
+    
+    next.onclick = function() {
+      sundayRef += 7;
+      saturdayRef += 7;
+      adjustCalendar(sundayRef, saturdayRef);
+      daysToEventsCompare(daysToschedule, event_data.events)
+    
+    }
+    
+    prev.onclick = function() {
+      sundayRef -= 7;
+      saturdayRef -= 7;
+      adjustCalendar(sundayRef, saturdayRef);
+      daysToEventsCompare(daysToschedule, event_data.events)
+      
+    }
+
+
+
+
 
 // Initialize the calendar by appending the HTML dates
 function init_calendar(date) {
@@ -147,7 +330,7 @@ function new_event(event) {
         if(name.length === 0) {
             $("#name").addClass("error-input");
         }
-        else if(!isNaN(count)) {
+        else if (!isNaN(count)) {
             $("#count").addClass("error-input");
         }
         else {
@@ -157,6 +340,8 @@ function new_event(event) {
             date.setDate(day);
             init_calendar(date);
         }
+      daysToEventsCompare(daysToschedule, event_data.events)
+
     });
     
 }
@@ -175,11 +360,11 @@ function new_event_json(name, count, date, day) {
 
 // Display all events of the selected date in card views
 function show_events(events, month, day) {
-    daysToEventsCompare(daysToschedule, event_data.events)
+    // daysToEventsCompare(daysToschedule, event_data.events)
     // Clear the dates container
     $(".events-container").empty();
     $(".events-container").show(250);
-    console.log(event_data["events"]);
+    // console.log(event_data["events"]);
     // If there are no events for this date, notify the user
     if(events.length===0) {
         var event_card = $("<div class='event-card'></div>");
@@ -187,6 +372,8 @@ function show_events(events, month, day) {
         $(event_card).css({ "border-left": "10px solid #FF1744" });
         $(event_card).append(event_name);
         $(".events-container").append(event_card);
+        daysToEventsCompare(daysToschedule, event_data.events)
+
     }
     else {
         // Go through and add each event as a card to the events container
@@ -202,8 +389,12 @@ function show_events(events, month, day) {
             }
             $(event_card).append(event_name).append(event_count);
             $(".events-container").append(event_card);
+
+            daysToEventsCompare(daysToschedule, event_data.events)
         }
+
     }
+    daysToEventsCompare(daysToschedule, event_data.events)
 }
 
 // Checks if a specific date has any events
@@ -221,19 +412,52 @@ function check_events(day, month, year) {
     return events;
 }
 
-// functions for weekly view
-let daysToschedule = Array.from(document.querySelectorAll('.d'));
+    // Recreate schedule table to display availability for listed week of
+    function checkWeeks() {
 
-function daysToEventsCompare(arr1, arr2){
-    arr2.forEach(element => {
-        let newEl = element.occasion.toLowerCase()
-        arr1.forEach(el => {
-            if(el.className.includes(newEl)){
-                el.innerText = element.invited_count;
-            };
-        })
-    });
-}
+    }
+
+  
+
+
+// functions for weekly view
+
+
+
+// function daysToEventsCompare(arr1, arr2){
+//     console.log(arr2);
+//     let scheduledArr = [];
+//     arr1.forEach(el => {
+//             arr2.forEach(element => {
+//                 let newEl = element.occasion.toLowerCase()
+       
+//             if(el.className.includes(newEl) && el.id.includes(`${element.month}/${element.day}`) && element.invited_count){
+             
+//                 scheduledArr.push(element)
+//                 console.log(element);
+//                 console.log(scheduledArr);
+//             }
+//                 })
+//     });
+
+//     arr1.forEach(el => {
+//                     scheduledArr.forEach(element => {
+//                         let newEl = element.occasion.toLowerCase()
+               
+//                     if(el.className.includes(newEl) && el.id.includes(`${element.month}/${element.day}`) && element.invited_count){
+//                         el.innerHTML = `<span style= "color: black; font-weight: bold;">${element.invited_count}</span>`;
+//                     } 
+//                     if(!el.className.includes(newEl) && el.id.includes(`${element.month}/${element.day}`) && element.invited_count){
+//                         el.innerHTml = 'a';
+//                     }
+//                         })
+//             });
+
+
+    
+// }
+
+
 
 // Given data for events in JSON format
 var event_data = {
@@ -246,7 +470,7 @@ var event_data = {
         "day": 10,
         "cancelled": true
     },
-    // {occasion: "Roland", invited_count: "Victor", year: 2020, month: 12, day: 31}
+    {occasion: "Roland", invited_count: "Victor", year: 2020, month: 12, day: 31}
     ]
 };
 
@@ -268,3 +492,5 @@ const months = [
     "November", 
     "December" 
 ];
+
+})()
