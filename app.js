@@ -8,11 +8,16 @@ $(document).ready(function(){
     $(".left-button").click({date: date}, prev_year);
     $(".month").click({date: date}, month_click);
     $("#add-button").click({date: date}, new_event);
+    // $("#add-button").click(function() {
+    //     let boxToReset = document.querySelector('#name')
+    //     boxToReset.options[0].selected = true
+    // });
     // Set current month as active
     $(".months-row").children().eq(date.getMonth()).addClass("active-month");
     init_calendar(date);
     var events = check_events(today, date.getMonth()+1, date.getFullYear());
     show_events(events, months[date.getMonth()], today);
+    
     
 });
 
@@ -21,8 +26,8 @@ let daysToschedule = Array.from(document.querySelectorAll('.d'));
 
 
     
-    var sundayRef = 0;
-    var saturdayRef = 6;
+    var sundayRef = 1;
+    var saturdayRef = 7;
     
 
     var dateRange = document.getElementById('date-range');
@@ -55,16 +60,16 @@ let daysToschedule = Array.from(document.querySelectorAll('.d'));
                     if(el.className.includes(newEl) && el.id.includes(`${element.month}/${element.day}`)){
                     scheduledArr.push(element)
                         el.innerHTML = `<span style= "color: black; font-weight: bold;">${element.invited_count}</span>`;
-                        console.log(scheduledArr);
+                        // console.log(scheduledArr);
                                         scheduledArr.forEach(sch => {
                                             for(let i =0; i < theHelpers.length; i++){
                                                 if(!theHelpers[i].className.split(' ').includes(sch.occasion)){
-                                                console.log(theHelpers[i]);
+                                                // console.log(theHelpers[i]);
                                                     if(theHelpers[i].id !== `${scheduledArr.month}/${scheduledArr.day}`){                                                
                                             }
                                                 }}
                                                 for(let i =0; i < theHelpers.length; i++){
-                                                console.log('object');
+                                                // console.log('object');
                                                 if(theHelpers[i].className.split(' ').includes(sch.occasion)) {
                                                    console.log('match');
                                                    }
@@ -270,7 +275,7 @@ function date_click(event) {
     $(".active-date").removeClass("active-date");
     $(this).addClass("active-date");
     show_events(event.data.events, event.data.month, event.data.day);
-    console.log(event);
+    // console.log(event);
 };
 
 // Event handler for when a month is clicked
@@ -307,6 +312,44 @@ function prev_year(event) {
 
 // Event handler for clicking the new event button
 function new_event(event) {
+    
+    var date = event.data.date;
+    var name = $("#name option:selected").text();
+    var count = $("#count option:selected").text();
+    var day = parseInt($(".active-date").html());
+    let monthCheck = parseInt(moment(date).format('M'));
+    let yearCheck = parseInt(moment(date).format('YYYY'));
+    console.log(name, count, day, monthCheck, yearCheck); 
+    // Check to see if assistant is already scheduled, if so disable from the select list 
+    event_data.events.forEach(obj => {
+        if(obj.occasion === name && obj.invited_count === count && obj.month === monthCheck && obj.day === day && obj.year === yearCheck) {
+            let inputToDisable = document.querySelector('#name')
+            let valuesToDisable = Array.from(inputToDisable.options)
+            valuesToDisable.forEach(val => {
+                if(val.value === name.toLowerCase()){
+                    val.disabled = true;
+
+                    
+                }
+                // boxToReset.options[0].selected = true;
+
+            })
+        } 
+    
+        if(obj.occasion !== name && obj.invited_count !== count && obj.month !== monthCheck && obj.day !== day && obj.year !== yearCheck) {
+            
+            let inputToDisable = document.querySelector('#name')
+            let valuesToDisable = Array.from(inputToDisable.options)
+            valuesToDisable.forEach(val => {
+                if(val.value === name.toLowerCase()){
+                    val.disabled = false;
+
+                }
+   
+            })
+        } 
+        
+    })
     // if a date isn't selected then do nothing
     if($(".active-date").length===0)
         return;
@@ -315,10 +358,11 @@ function new_event(event) {
         $(this).removeClass("error-input");
     })
     // empty inputs and hide events
-    $("#dialog input[type=text]").val('');
-    $("#dialog input[type=text]").val('');
+    $("#dialog select[type=text]").val('');
+    $("#dialog select[type=text]").val('');
     $(".events-container").hide(250);
     $("#dialog").show(250);
+    
     // Event handler for cancel button
     $("#cancel-button").click(function() {
         $("#name").removeClass("error-input");
@@ -327,17 +371,28 @@ function new_event(event) {
         $(".events-container").show(250);
     });
     // Event handler for ok button
+  
     $("#ok-button").unbind().click({date: event.data.date}, function() {
+        
+        event.preventDefault()
         var date = event.data.date;
         var name = $("#name option:selected").text();
         var count = $("#count option:selected").text();
         var day = parseInt($(".active-date").html());
+        let monthCheck = parseInt(moment(date).format('M'));
+        let yearCheck = parseInt(moment(date).format('YYYY'));
+        console.log(name, count, day, monthCheck, yearCheck); 
+        // Check to see if assistant is already scheduled, if so disable from the select list 
+
         // Basic form validation
         if(name.length === 0) {
             $("#name").addClass("error-input");
+            event.preventDefault();
         }
         else if (!isNaN(count)) {
             $("#count").addClass("error-input");
+            event.preventDefault();
+            
         }
         else {
             $("#dialog").hide(250);
@@ -345,10 +400,11 @@ function new_event(event) {
             new_event_json(name, count, date, day);
             date.setDate(day);
             init_calendar(date);
+            event.preventDefault();
         }
       daysToEventsCompare(daysToschedule, event_data.events)
-
-    });
+      
+      });
     
 }
 
@@ -386,7 +442,7 @@ function show_events(events, month, day) {
         for(var i=0; i<events.length; i++) {
             var event_card = $("<div class='event-card'></div>");
             var event_name = $("<div class='event-name'><span style='color: red;'>"+events[i]["occasion"]+"</span> assigned to:</div>");
-            var event_count = $("<div class='event-count'>"+events[i]["invited_count"]+"</div>");
+            var event_count = $("<div class='event-count'>"+events[i]["invited_count"]+"</div><div class='removeBtn'>X</div>");
             if(events[i]["cancelled"]===true) {
                 $(event_card).css({
                     "border-left": "10px solid #FF1744"
@@ -396,11 +452,41 @@ function show_events(events, month, day) {
             $(event_card).append(event_name).append(event_count);
             $(".events-container").append(event_card);
 
-            daysToEventsCompare(daysToschedule, event_data.events)
         }
+        
+        let removeBtn = document.querySelector('.removeBtn');
+        if(removeBtn){
+        removeBtn.addEventListener('click', removeFromSchedule)}
+        else{return}
 
+        function removeFromSchedule() {
+            let tech = removeBtn.previousElementSibling;
+            let assistant = tech.previousElementSibling.lastElementChild;
+                event_data.events.forEach(obj =>{
+                    let monthNum = months.indexOf(month) + 1;
+                    console.log(obj.month);
+                    if(obj.occasion === assistant.innerText && obj.invited_count === tech.innerText && obj.month === monthNum && obj.day === day){
+                        obj.cancelled = true;
+                        var date = new Date();
+                        var today = date.getDate();
+                        daysToEventsCompare(daysToschedule, event_data.events);
+                        show_events(events, months[date.getMonth()], today);
+                        removeBtn.removeEventListener('click', removeFromSchedule, false);
+                        alert('Please Refresh Page for Updates')
+                        return;
+                        
+                    }
+                    // Update UI
+              
+                })
+            }
+
+
+        
+        
     }
     daysToEventsCompare(daysToschedule, event_data.events)
+    
 }
 
 // Checks if a specific date has any events
@@ -424,44 +510,6 @@ function check_events(day, month, year) {
   
 
 
-// functions for weekly view
-
-
-
-// function daysToEventsCompare(arr1, arr2){
-//     console.log(arr2);
-//     let scheduledArr = [];
-//     arr1.forEach(el => {
-//             arr2.forEach(element => {
-//                 let newEl = element.occasion.toLowerCase()
-       
-//             if(el.className.includes(newEl) && el.id.includes(`${element.month}/${element.day}`) && element.invited_count){
-             
-//                 scheduledArr.push(element)
-//                 console.log(element);
-//                 console.log(scheduledArr);
-//             }
-//                 })
-//     });
-
-//     arr1.forEach(el => {
-//                     scheduledArr.forEach(element => {
-//                         let newEl = element.occasion.toLowerCase()
-               
-//                     if(el.className.includes(newEl) && el.id.includes(`${element.month}/${element.day}`) && element.invited_count){
-//                         el.innerHTML = `<span style= "color: black; font-weight: bold;">${element.invited_count}</span>`;
-//                     } 
-//                     if(!el.className.includes(newEl) && el.id.includes(`${element.month}/${element.day}`) && element.invited_count){
-//                         el.innerHTml = 'a';
-//                     }
-//                         })
-//             });
-
-
-    
-// }
-
-
 
 // Given data for events in JSON format
 var event_data = {
@@ -474,7 +522,7 @@ var event_data = {
         "day": 10,
         "cancelled": true
     },
-    {occasion: "Roland", invited_count: "Victor", year: 2020, month: 12, day: 31}
+    // {occasion: "Roland", invited_count: "Victor", year: 2020, month: 12, day: 31}
     ]
 };
 
