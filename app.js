@@ -27,7 +27,6 @@ var dateRange = document.getElementById('date-range');
 var dateViews = document.getElementsByClassName('date');
 var daysOfMonth = document.getElementById('days-of-month');
 var calendarPopover = document.getElementById('calendar-popover');
-var roland = document.getElementsByClassName('roland');
 var javi = document.getElementsByClassName('javi');
 var gabriel = document.getElementsByClassName('gabriel');
 var gustavo = document.getElementsByClassName('gustavo');
@@ -84,12 +83,6 @@ function adjustCalendar(monRef, sunRef) {
 		for (var date = monRef; date <= sunRef; date++) {
 			dateViews[(date - 1) % 7].innerHTML = moment().day(date).format('M[/]D');
 
-			roland[(date - 1) % 7].setAttribute(
-				'id',
-				moment().day(date).format('M[/]D')
-			);
-			roland.id = moment().day(date).format('M[/]D');
-
 			gabriel[(date - 1) % 7].setAttribute(
 				'id',
 				moment().day(date).format('M[/]D')
@@ -144,12 +137,6 @@ function adjustCalendar(monRef, sunRef) {
 				.day(-date)
 				.format('M[/]D');
 
-			roland[-(monRef + date)].setAttribute(
-				'id',
-				moment().day(-date).format('M[/]D')
-			);
-			roland.id = moment().day(-date).format('M[/]D');
-
 			javi[-(monRef + date)].setAttribute(
 				'id',
 				moment().day(-date).format('M[/]D')
@@ -197,7 +184,6 @@ function adjustCalendar(monRef, sunRef) {
 				moment().day(-date).format('M[/]D')
 			);
 			antonio.id = moment().day(-date).format('M[/]D');
-			//   console.log(roland[-(monRef + date)]);
 		}
 	}
 
@@ -529,7 +515,7 @@ function check_events(day, month, year) {
 var event_data = {
 	events: [
 		{
-			occasion: 'Roland',
+			occasion: 'Gustavo',
 			invited_count: 'Victor',
 			year: 2021,
 			month: 1,
@@ -544,8 +530,6 @@ var event_data = {
 		},
 	],
 };
-
-// {occasion: "Roland", invited_count: "Victor", year: 2020, month: 12, day: 31}
 
 const months = [
 	'January',
