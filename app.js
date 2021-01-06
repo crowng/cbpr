@@ -1,6 +1,6 @@
 
 // Setup the calendar with the current date
-$(document).ready(function(){
+$(document).ready(function(){ 
     var date = new Date();
     var today = date.getDate();
     // Set click handlers for DOM elements
@@ -268,8 +268,55 @@ function days_in_month(month, year) {
     return (monthEnd - monthStart) / (1000 * 60 * 60 * 24);    
 }
 
+function checkScheduling(e) {
+    // this event will have event.data.day && event.data.month 
+    // check each object in actual events arry to match day and month and if match disable assistant input in form 
+ let dayPicked = e.data.day
+ let monthPicked = e.data.month
+ let schedule = Array.from(event_data.events)
+ console.log(dayPicked, monthPicked, schedule);
+const months = [ 
+   "January", 
+   "February", 
+   "March", 
+   "April", 
+   "May", 
+   "June", 
+   "July", 
+   "August", 
+   "September", 
+   "October", 
+   "November", 
+   "December" 
+];
+let month = months.indexOf(monthPicked)
+console.log(month);
+schedule.forEach(entry => {
+    let inputToDisable = document.querySelector('#name')
+    let valuesToDisable = Array.from(inputToDisable.options)
+    if(entry.day === dayPicked && entry.month === month + 1) {
+        valuesToDisable.forEach(value => {
+
+            if(value.value === entry.occasion.toLowerCase()){
+                console.log(value);
+                value.disabled = true;
+                return
+            }
+        })
+    }
+})
+
+return
+}
+
 // Event handler for when a date is clicked
 function date_click(event) {
+    let inputToDisable = document.querySelector('#name')
+    inputToDisable.selectedIndex = 0;
+    let valuesToDisable = Array.from(inputToDisable.options)
+    valuesToDisable.forEach(val => val.disabled = false)
+    checkScheduling(event)
+    // console.log(event);
     $(".events-container").show(250);
     $("#dialog").hide(250);
     $(".active-date").removeClass("active-date");
@@ -320,36 +367,7 @@ function new_event(event) {
     let monthCheck = parseInt(moment(date).format('M'));
     let yearCheck = parseInt(moment(date).format('YYYY'));
     console.log(name, count, day, monthCheck, yearCheck); 
-    // Check to see if assistant is already scheduled, if so disable from the select list 
-    event_data.events.forEach(obj => {
-        if(obj.occasion === name && obj.invited_count === count && obj.month === monthCheck && obj.day === day && obj.year === yearCheck) {
-            let inputToDisable = document.querySelector('#name')
-            let valuesToDisable = Array.from(inputToDisable.options)
-            valuesToDisable.forEach(val => {
-                if(val.value === name.toLowerCase()){
-                    val.disabled = true;
 
-                    
-                }
-                // boxToReset.options[0].selected = true;
-
-            })
-        } 
-    
-        if(obj.occasion !== name && obj.invited_count !== count && obj.month !== monthCheck && obj.day !== day && obj.year !== yearCheck) {
-            
-            let inputToDisable = document.querySelector('#name')
-            let valuesToDisable = Array.from(inputToDisable.options)
-            valuesToDisable.forEach(val => {
-                if(val.value === name.toLowerCase()){
-                    val.disabled = false;
-
-                }
-   
-            })
-        } 
-        
-    })
     // if a date isn't selected then do nothing
     if($(".active-date").length===0)
         return;
@@ -455,32 +473,9 @@ function show_events(events, month, day) {
         }
         
         let removeBtn = document.querySelector('.removeBtn');
-        if(removeBtn){
-        removeBtn.addEventListener('click', removeFromSchedule)}
-        else{return}
+        // Add function to remove selected info from events array
 
-        function removeFromSchedule() {
-            let tech = removeBtn.previousElementSibling;
-            let assistant = tech.previousElementSibling.lastElementChild;
-                event_data.events.forEach(obj =>{
-                    let monthNum = months.indexOf(month) + 1;
-                    console.log(obj.month);
-                    if(obj.occasion === assistant.innerText && obj.invited_count === tech.innerText && obj.month === monthNum && obj.day === day){
-                        obj.cancelled = true;
-                        var date = new Date();
-                        var today = date.getDate();
-                        daysToEventsCompare(daysToschedule, event_data.events);
-                        show_events(events, months[date.getMonth()], today);
-                        removeBtn.removeEventListener('click', removeFromSchedule, false);
-                        alert('Please Refresh Page for Updates')
-                        return;
-                        
-                    }
-                    // Update UI
-              
-                })
-            }
-
+    
 
         
         
@@ -514,15 +509,11 @@ function check_events(day, month, year) {
 // Given data for events in JSON format
 var event_data = {
     "events": [
-    {
-        "occasion": " Repeated Test Event ",
-        "invited_count": 120,
-        "year": 2017,
-        "month": 5,
-        "day": 10,
-        "cancelled": true
-    },
-    // {occasion: "Roland", invited_count: "Victor", year: 2020, month: 12, day: 31}
+
+    {occasion: "Roland", invited_count: "Victor", year: 2021, month: 1, day: 8},
+    {occasion: "Gabriel", invited_count: "Victor", year: 2021, month: 1, day: 8},
+    {occasion: "Javi", invited_count: "Victor", year: 2021, month: 1, day: 8},
+    {occasion: "Gustavo", invited_count: "Victor", year: 2021, month: 1, day: 8},
     ]
 };
 
